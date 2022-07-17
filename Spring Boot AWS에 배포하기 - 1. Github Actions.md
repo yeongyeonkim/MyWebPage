@@ -12,7 +12,7 @@
 
 * Workflow 생성
 
-![1](img/Github Actions/1.png)
+![1](img/Github_Actions/1.png)
 
 ```yaml
 name: Java CI with Gradle
@@ -46,7 +46,7 @@ jobs:
       run: ./gradlew build
 ```
 
-![2](img/Github Actions/2.png)
+![2](img/Github_Actions/2.png)
 
 ---
 
@@ -75,11 +75,11 @@ jobs:
 
 * Report 확인
 
-![3](img/Github Actions/3.png)
+![3](img/Github_Actions/3.png)
 
 * log 파일로 다운 받아서 결과를 확인 또한 가능
 
-![4](img/Github Actions/4.png)
+![4](img/Github_Actions/4.png)
 
 ---
 
@@ -87,8 +87,8 @@ jobs:
 
 * Repository - Settings - Branches - Add branch protection rule
 
-![5](img/Github Actions/5.png)
+![5](img/Github_Actions/5.png)
 
 * 병합 이전 상태를 체크, 최신 상태의 브랜치여야 한다.
 
-![6](img/Github Actions/6.png)
+![6](img/Github_Actions/6.png)
