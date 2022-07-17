@@ -55,3 +55,30 @@
 
 ---
 
+##### S3
+
+* 버킷 생성 (퍼블릭 액세스를 비롯한 모든 설정 default)
+
+  ![9](img/AWS/9.png)
+
+---
+
+##### Code Deploy Agent 설치 ([공식 문서](https://docs.aws.amazon.com/ko_kr/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html))
+
+```bash
+sudo yum update -y
+sudo yum install ruby -y
+sudo yum install wget -y
+
+#!/bin/bash
+CODEDEPLOY_BIN="/opt/codedeploy-agent/bin/codedeploy-agent"
+$CODEDEPLOY_BIN stop
+yum erase codedeploy-agent -y
+
+cd /home/ec2-user
+wget https://aws-codedeploy-ap-northeast-2.s3.ap-northeast-2.amazonaws.com/latest/install
+chmod +x ./install
+sudo ./install auto
+sudo service codedeploy-agent status
+```
+
