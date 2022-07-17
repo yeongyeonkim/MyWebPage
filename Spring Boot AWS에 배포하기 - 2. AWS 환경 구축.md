@@ -63,7 +63,9 @@
 
 ---
 
-##### Code Deploy Agent 설치 ([공식 문서](https://docs.aws.amazon.com/ko_kr/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html))
+##### CodeDeploy Agent
+
+* 설치 ([공식 문서](https://docs.aws.amazon.com/ko_kr/codedeploy/latest/userguide/codedeploy-agent-operations-install-linux.html))
 
 ```bash
 sudo yum update -y
@@ -81,4 +83,30 @@ chmod +x ./install
 sudo ./install auto
 sudo service codedeploy-agent status
 ```
+
+* CodeDeploy 역할 생성
+
+  ![10](img/AWS/10.png)
+
+* CodeDeploy 애플리케이션 생성
+
+  ![11](img/AWS/11.png)
+
+  ![12](img/AWS/12.png)
+
+* CodeDeploy 배포 그룹 생성
+
+  ![13](img/AWS/13.png)
+
+  * 생성한 iam role 적용
+
+  ![14](img/AWS/14.png)
+
+  * 대상이 될 EC2 인스턴스의 Tag 명을 기재
+
+  ![15](img/AWS/15.png)
+
+  ![16](img/AWS/16.png)
+
+---
 
