@@ -80,3 +80,15 @@ jobs:
 * log 파일로 다운 받아서 결과를 확인 또한 가능
 
 ![4](img/Github Actions/4.png)
+
+---
+
+##### 3. CI가 실행 중이거나, 실패한 경우 merge가 되지 않도록 설정
+
+* Repository - Settings - Branches - Add branch protection rule
+
+![5](img/Github Actions/5.png)
+
+* 병합 이전 상태를 체크, 최신 상태의 브랜치여야 한다.
+
+![6](img/Github Actions/6.png)
