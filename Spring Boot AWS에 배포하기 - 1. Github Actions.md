@@ -1,5 +1,11 @@
 ##### 목표: github actions 생성하여 push할 때 마다 CI로 빌드 & 테스트 후 S3에 적재하고 Code Deploy (ing)
 
+- main 브랜치에 push 하면 자동으로 EC2 까지 배포되는 Workflow
+  1. Github Actions 코드 빌드 및 테스트 (CI)
+  2. AWS 인증
+  3. jar 파일 S3 업로드
+  4. Code Deploy를 통한 EC2 배포
+
 ---
 
 ##### 1. Github Actions 자동 빌드 및 테스트
