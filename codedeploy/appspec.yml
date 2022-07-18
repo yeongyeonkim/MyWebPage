@@ -1,0 +1,24 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /api.jar
+    destination: /home/ec2-user/app
+
+permissions:
+  - object: /home/ec2-user/app
+    pattern: "**"
+    owner: ec2-user
+    mode: 644
+    type:
+      - file
+
+hooks:
+  BeforeInstall:
+    - location: /stop_api.sh
+      timeout: 60
+      runas: ec2-user
+  ApplicationStart:
+    - location: /start_api.sh
+      timeout: 60
+      runas: ec2-user
