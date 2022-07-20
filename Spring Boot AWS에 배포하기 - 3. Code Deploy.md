@@ -51,7 +51,7 @@ hooks:
 * start_api.sh
 
 ```shell
-#!/bin/bash
+#!/usr/bin/env bash
 
 HOME_PATH=/home/ec2-user/app
 JAR_FILE="$HOME_PATH/api.jar"
@@ -65,6 +65,36 @@ cp $HOME_PATH/build/libs/*.jar $JAR_FILE
 nohup java -jar $JAR_FILE > $APP_LOG 2> $ERROR_LOG &
 
 ```
+
+* stop_api.sh
+
+```shell
+
+```
+
+---
+
+##### build.gradle 파일 수정
+
+* Spring Boot 2.5 버전부터 빌드 시 `-plain.jar` 파일이 추가로 생성되는데, 생성되지 않도록 한다.
+
+```groovy
+# build.gradle
+jar {
+	enabled = false
+}
+```
+
+---
+
+##### Github Actions Workflow 작성
+
+* deploy.yml
+
+```
+```
+
+
 
 
 
