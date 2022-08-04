@@ -25,6 +25,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        
       - name: Configure-aws-credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
