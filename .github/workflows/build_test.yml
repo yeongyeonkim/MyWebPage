@@ -3,7 +3,8 @@ name: 1. 빌드 및 테스트
 on:
   push:
     branches:
-      - main
+      - 'feature/**'
+
 #  pull_request:
 #    branches: [ "main" ]
 

@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   deploy:
-#    if: github.event.pull_request.merged == true
+#     if: github.event.pull_request.merged == true # 2022-08-08
     name: deploy
     runs-on: ubuntu-latest
     #    environment: production
@@ -34,8 +34,6 @@ jobs:
 
       - name: Build with Gradle
         run: ./gradlew build
-        with: # Test 제외
-          arguments: clean build -x test 
 
       - name: Upload to S3
         run: |
