@@ -92,6 +92,62 @@ jar {
 * deploy.yml
 
 ```
+name: 2. 배포
+
+on:
+  pull_request:
+    branches:
+      - main
+
+env:
+  AWS_REGION: ap-northeast-2
+  S3_BUCKET_NAME: yeongyeon-api-s3-bucket
+  CODE_DEPLOY_APPLICATION_NAME: api-deploy
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: api-deploy-group
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+#     if: github.event.pull_request.merged == true # 2022-08-08
+    name: deploy
+    runs-on: ubuntu-latest
+    #    environment: production
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Configure-aws-credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY}}
+          aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
+          aws-region: ap-northeast-2
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        
+      - name: Build with Gradle
+        run: ./gradlew build
+
+      - name: Upload to S3
+        run: |
+          aws deploy push \
+            --application-name ${{env.CODE_DEPLOY_APPLICATION_NAME}} \
+            --ignore-hidden-files \
+            --s3-location s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip \
+            --source codedeploy/
+
+      - name: Deploy to EC2
+        run: |
+          aws deploy create-deployment \
+            --application-name ${{env.CODE_DEPLOY_APPLICATION_NAME}} \
+            --deployment-config-name CodeDeployDefault.OneAtATime \
+            --deployment-group-name ${{env.CODE_DEPLOY_DEPLOYMENT_GROUP_NAME}} \
+            --s3-location bucket=$S3_BUCKET_NAME,key=$GITHUB_SHA.zip,bundleType=zip
+      
 ```
 
 
