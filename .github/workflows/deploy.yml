@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   deploy:
-#     if: github.event.pull_request.merged == true # 2022-08-04
+#     if: github.event.pull_request.merged == true # 2022-08-08
     name: deploy
     runs-on: ubuntu-latest
     #    environment: production
@@ -32,6 +32,9 @@ jobs:
           aws-secret-access-key: ${{secrets.AWS_SECRET_KEY}}
           aws-region: ap-northeast-2
 
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+        
       - name: Build with Gradle
         run: ./gradlew build
 
@@ -41,7 +44,7 @@ jobs:
             --application-name ${{env.CODE_DEPLOY_APPLICATION_NAME}} \
             --ignore-hidden-files \
             --s3-location s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip \
-            --source .
+            --source codedeploy/
 
       - name: Deploy to EC2
         run: |
