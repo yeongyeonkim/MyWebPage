@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   deploy:
-    if: github.event.pull_request.merged == true
+#    if: github.event.pull_request.merged == true
     name: deploy
     runs-on: ubuntu-latest
     #    environment: production
