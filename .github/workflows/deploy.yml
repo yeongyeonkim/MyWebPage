@@ -44,7 +44,7 @@ jobs:
             --application-name ${{env.CODE_DEPLOY_APPLICATION_NAME}} \
             --ignore-hidden-files \
             --s3-location s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip \
-            --source .
+            --source ../codedeploy
 
       - name: Deploy to EC2
         run: |
